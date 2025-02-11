@@ -11,7 +11,7 @@
       </div>
       <script>
         // get the parent
-        let paragraph = document.querySelector("p");
+        let parent = document.querySelector("div");
         
         // get the node
         let node = document.querySelector("p");
