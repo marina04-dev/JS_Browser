@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .red {
+        --variable: lightcoral;
+        background-color: var(--variable);
+      }
+    </style>
+  </head>
+  <body>
+      <div class="red">
+        <p>Paragraph 1</p>
+      </div>
+      <div class="red">
+        <p>Paragraph 2</p>
+      </div>
+      <button>Change Style</button>
+      <script>
+        let button = document.querySelector("button");
+        let div = document.querySelector("div");
+        button.addEventListener("click", ()=>{
+          let value = window.getComputedStyle(div).getPropertyValue("--variable");
+          console.log(value);
+          div.style.setProperty("--variable", "lightblue");
+        })
+      </script>
+  </body>
+</html>
