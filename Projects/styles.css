@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 40px 30px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+h1 span {
+  color: #00ffe0;
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.display input {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  color: #fff;
+  flex: 1;
+}
+
+.copy-btn {
+  background: #00bcd4;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.copy-btn:hover {
+  background: #0097a7;
+}
+
+.generate-btn {
+  margin-top: 25px;
+  padding: 12px 20px;
+  background: #00ffe0;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.generate-btn:hover {
+  background: #1de9b6;
+}
+
+.strength {
+  text-align: left;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+#strength-text {
+  font-weight: bold;
+  margin-left: 6px;
+  color: #ffffff;
+}
+
+#strength-bar {
+  height: 8px;
+  margin-top: 5px;
+  background: #444;
+  border-radius: 6px;
+  transition: background 0.3s, width 0.3s;
+}
