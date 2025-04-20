@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #001e4d;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .app {
+        background: #fff;
+        width: 100%;
+        max-width: 600px;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .app h1 {
+        font-size: 28px;
+        color: #001e4d;
+        font-weight: 700;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .quiz h2 {
+        font-size: 20px;
+        color: #001e4d;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .btn {
+        background: #fff;
+        color: #001e4d;
+        font-weight: 500;
+        width: 100%;
+        border: 2px solid #001e4d;
+        padding: 12px;
+        margin: 10px 0;
+        text-align: left;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover:not([disabled]) {
+        background: #001e4d;
+        color: #fff;
+      }
+
+      .btn:disabled {
+        cursor: no-drop;
+      }
+
+      #next-btn {
+        background: #001e4d;
+        color: #fff;
+        font-weight: 500;
+        width: 160px;
+        border: none;
+        padding: 12px;
+        margin: 20px auto 0;
+        border-radius: 6px;
+        cursor: pointer;
+        display: none;
+        transition: background 0.3s ease;
+      }
+
+      #next-btn:hover {
+        background: #00307a;
+      }
+
+      .correct {
+        background: #9aeabc;
+        border-color: #4caf50;
+      }
+
+      .incorrect {
+        background: #ff9393;
+        border-color: #f44336;
+      }
+
+      .center {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <h1>Simple Quiz</h1>
+      <div class="quiz">
+        <h2 id="question">Question goes here</h2>
+        <div id="answer-buttons"></div>
+        <div class="center">
+          <button id="next-btn">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          question: "Which is the largest animal in the world?",
+          answers: [
+            { text: "Blue Whale", correct: true },
+            { text: "Shark", correct: false },
+            { text: "Giraffe", correct: false },
+            { text: "Elephant", correct: false },
+          ],
+        },
+        {
+          question: "Which planet is known as the Red Planet?",
+          answers: [
+            { text: "Earth", correct: false },
+            { text: "Mars", correct: true },
+            { text: "Jupiter", correct: false },
+            { text: "Saturn", correct: false },
+          ],
+        },
+        {
+          question: "What is the capital of France?",
+          answers: [
+            { text: "Berlin", correct: false },
+            { text: "Madrid", correct: false },
+            { text: "Paris", correct: true },
+            { text: "Rome", correct: false },
+          ],
+        },
+        {
+          question: "What is the largest ocean on Earth?",
+          answers: [
+            { text: "Atlantic Ocean", correct: false },
+            { text: "Indian Ocean", correct: false },
+            { text: "Arctic Ocean", correct: false },
+            { text: "Pacific Ocean", correct: true },
+          ],
+        },
+        {
+          question: "Which element has the chemical symbol 'O'?",
+          answers: [
+            { text: "Gold", correct: false },
+            { text: "Oxygen", correct: true },
+            { text: "Silver", correct: false },
+            { text: "Hydrogen", correct: false },
+          ],
+        },
+        {
+          question: "What is the hardest natural substance on Earth?",
+          answers: [
+            { text: "Gold", correct: false },
+            { text: "Diamond", correct: true },
+            { text: "Iron", correct: false },
+            { text: "Quartz", correct: false },
+          ],
+        },
+        {
+          question: "Which gas do plants absorb from the atmosphere?",
+          answers: [
+            { text: "Oxygen", correct: false },
+            { text: "Carbon Dioxide", correct: true },
+            { text: "Nitrogen", correct: false },
+            { text: "Hydrogen", correct: false },
+          ],
+        },
+        {
+          question: "What is the smallest prime number?",
+          answers: [
+            { text: "0", correct: false },
+            { text: "1", correct: false },
+            { text: "2", correct: true },
+            { text: "3", correct: false },
+          ],
+        },
+        {
+          question: "Which planet is known for its rings?",
+          answers: [
+            { text: "Earth", correct: false },
+            { text: "Mars", correct: false },
+            { text: "Saturn", correct: true },
+            { text: "Jupiter", correct: false },
+          ],
+        },
+        {
+          question: "What is the main ingredient in guacamole?",
+          answers: [
+            { text: "Tomato", correct: false },
+            { text: "Avocado", correct: true },
+            { text: "Onion", correct: false },
+            { text: "Pepper", correct: false },
+          ],
+        },
+      ];
+
+      const questionElement = document.getElementById("question");
+      const answerButtons = document.getElementById("answer-buttons");
+      const nextButton = document.getElementById("next-btn");
+
+      let currentQuestionIndex = 0;
+      let score = 0;
+
+      function startQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        nextButton.innerHTML = "Next";
+        showQuestion();
+      }
+
+      function showQuestion() {
+        resetState();
+        const currentQuestion = questions[currentQuestionIndex];
+        const questionNo = currentQuestionIndex + 1;
+        questionElement.innerText = `${questionNo}. ${currentQuestion.question}`;
+
+        currentQuestion.answers.forEach((answer) => {
+          const button = document.createElement("button");
+          button.innerText = answer.text;
+          button.classList.add("btn");
+          if (answer.correct) {
+            button.dataset.correct = answer.correct;
+          }
+          button.addEventListener("click", selectAnswer);
+          answerButtons.appendChild(button);
+        });
+      }
+
+      function resetState() {
+        nextButton.style.display = "none";
+        while (answerButtons.firstChild) {
+          answerButtons.removeChild(answerButtons.firstChild);
+        }
+      }
+
+      function selectAnswer(e) {
+        const selectedButton = e.target;
+        const isCorrect = selectedButton.dataset.correct === "true";
+
+        if (isCorrect) {
+          selectedButton.classList.add("correct");
+          score++;
+        } else {
+          selectedButton.classList.add("incorrect");
+        }
+
+        Array.from(answerButtons.children).forEach((button) => {
+          if (button.dataset.correct === "true") {
+            button.classList.add("correct");
+          }
+          button.disabled = true;
+        });
+
+        nextButton.style.display = "block";
+      }
+
+      function handleNextButton() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          showQuestion();
+        } else {
+          showScore();
+        }
+      }
+
+      function showScore() {
+        resetState();
+        questionElement.innerHTML = `You scored <strong>${score}</strong> out of <strong>${questions.length}</strong>! 🎉`;
+        nextButton.innerHTML = "Play Again";
+        nextButton.style.display = "block";
+      }
+
+      nextButton.addEventListener("click", () => {
+        if (currentQuestionIndex < questions.length) {
+          handleNextButton();
+        } else {
+          startQuiz();
+        }
+      });
+
+      startQuiz();
+    </script>
+  </body>
+</html>
