@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote Of The Day</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="quote-box">
+      <h2>Quote Of The Day</h2>
+      <blockquote id="quote">Loading...</blockquote>
+      <span id="author">Loading...</span>
+      <div>
+        <button onclick="getQuote()">New Quote</button>
+        <button onclick="tweet()"><img src="twitter_bird.png" />Tweet</button>
+      </div>
+    </div>
+
+    <script>
+      const quoteElement = document.getElementById("quote");
+      const authorElement = document.getElementById("author");
+
+      const quotes = [
+        {
+          content:
+            "The best way to get started is to quit talking and begin doing.",
+          author: "Walt Disney",
+        },
+        {
+          content: "Don’t let yesterday take up too much of today.",
+          author: "Will Rogers",
+        },
+        {
+          content:
+            "It’s not whether you get knocked down, it’s whether you get up.",
+          author: "Vince Lombardi",
+        },
+        {
+          content:
+            "If you are working on something exciting, it will keep you motivated.",
+          author: "Steve Jobs",
+        },
+        {
+          content: "Success is not in what you have, but who you are.",
+          author: "Bo Bennett",
+        },
+        {
+          content: "Believe you can and you’re halfway there.",
+          author: "Theodore Roosevelt",
+        },
+        {
+          content: "Do what you can with all you have, wherever you are.",
+          author: "Theodore Roosevelt",
+        },
+        {
+          content: "Act as if what you do makes a difference. It does.",
+          author: "William James",
+        },
+        {
+          content:
+            "Success usually comes to those who are too busy to be looking for it.",
+          author: "Henry David Thoreau",
+        },
+        {
+          content:
+            "Opportunities don’t happen. You create them. Don’t wait for them.",
+          author: "Chris Grosser",
+        },
+        {
+          content: "You miss 100% of the shots you don’t take. - Wayne Gretzky",
+          author: "Wayne Gretzky",
+        },
+        {
+          content:
+            "The only limit to our realization of tomorrow will be our doubts of today.",
+          author: "Franklin D. Roosevelt",
+        },
+        {
+          content:
+            "The future belongs to those who believe in the beauty of their dreams.",
+          author: "Eleanor Roosevelt",
+        },
+        {
+          content:
+            "It does not matter how slowly you go as long as you do not stop.",
+          author: "Confucius",
+        },
+        {
+          content:
+            "You are never too old to set another goal or to dream a new dream.",
+          author: "C.S. Lewis",
+        },
+
+        {
+          content: "The only way to do great work is to love what you do.",
+          author: "Steve Jobs",
+        },
+        {
+          content:
+            "Success is not the key to happiness. Happiness is the key to success.",
+          author: "Albert Schweitzer",
+        },
+        {
+          content:
+            "Success is walking from failure to failure with no loss of enthusiasm.",
+          author: "Winston S. Churchill",
+        },
+        {
+          content:
+            "The only place where success comes before work is in the dictionary.",
+          author: "Vidal Sassoon",
+        },
+        {
+          content: "Don’t watch the clock; do what it does. Keep going.",
+          author: "Sam Levenson",
+        },
+        {
+          content: "The future depends on what you do today.",
+          author: "Mahatma Gandhi",
+        },
+        {
+          content: "You can’t build a reputation on what you are going to do.",
+          author: "Henry Ford",
+        },
+        {
+          content:
+            "The only limit to our realization of tomorrow is our doubts of today.",
+          author: "Franklin D. Roosevelt",
+        },
+      ];
+
+      function getQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomIndex];
+        quoteElement.innerText = randomQuote.content;
+        authorElement.innerText = ` ${randomQuote.author}`;
+      }
+
+      function tweet() {
+        const quoteText = quoteElement.innerText;
+        const authorText = authorElement.innerText;
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+          `${quoteText} ${authorText}`
+        )}`;
+        window.open(twitterUrl, "_blank");
+      }
+
+      // Load first quote
+      getQuote();
+    </script>
+  </body>
+</html>
