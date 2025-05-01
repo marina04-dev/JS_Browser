@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="hero">
+      <nav>
+        <img src="images/logo.png" class="logo" />
+        <ul>
+          <li><a href="#home">HOME</a></li>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#portfolio">PORTFOLIO</a></li>
+          <li><a href="#services">SERVICES</a></li>
+          <li><a href="#hire">HIRE ME</a></li>
+        </ul>
+        <button onclick="toggle()">
+          <img src="images/moon.png" id="icon" />
+        </button>
+      </nav>
+
+      <div class="info" id="home">
+        <h1>I'm <span>Elisabeth</span> Karter</h1>
+        <p>
+          This is my official portfolio website to showcase all my works related
+          to Web Development and UI Design.
+        </p>
+        <a href="#">Download CV</a>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:youremail@gmail.com"
+            ><i class="fas fa-envelope"></i
+          ></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="images/woman.jpg" class="main-img" />
+      </div>
+    </div>
+
+    <section class="about" id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate web developer and UI designer with a keen eye for
+        detail and a love for creating beautiful, user-friendly websites.
+      </p>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+      <h2>Portfolio</h2>
+      <p>Check out some of my recent projects and collaborations.</p>
+    </section>
+
+    <section class="services" id="services">
+      <h2>Services</h2>
+      <ul>
+        <li>Web Development</li>
+        <li>UI/UX Design</li>
+        <li>Responsive Design</li>
+      </ul>
+    </section>
+
+    <section class="hire" id="hire">
+      <h2>Hire Me</h2>
+      <p>
+        Interested in working together? Let’s connect and bring your ideas to
+        life!
+      </p>
+      <a href="mailto:youremail@gmail.com" class="hire-btn">Contact Me</a>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
